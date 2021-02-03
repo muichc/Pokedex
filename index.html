@@ -10,16 +10,21 @@
 <body>
     <nav>
         <div class = 'nav-items'>Home</div>
-        <div class = 'nav-items'>Compare Pokemons</div>
+        <!-- <div class = 'nav-items'>Compare Pokemons</div> -->
     </nav>
+    <!-- <div>
+        <img src = "">
+    </div> -->
     <div class = "search">
-        <form onsubmit="return false">
-            <input id = "searchTerm" type = "text" placeholder = "Search by name">
-            <button> Search </button>
+        <form id = "search-form" onsubmit="return false">
+            <input id = "search-term" type = "text" placeholder = "Search by name or ID number!">
+            <button id = "search-button"> Search </button>
         </form>    
     </div>
     <div class = "pokedex">
-        <!-- <img src = ./resources/images/pokedex.png>  -->
+        <div class = "pokedex-images">
+            <img id = "initialPic" src = ./resources/images/pokedex.png> 
+        </div>
         <div class = "results">
             <div id = "profile"></div>
             <div id = "body"></div>
@@ -28,8 +33,10 @@
             <div id = "type-effect"></div>
             <div id = "moves"></div>
             <div id = "base-stats"></div>
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
         </div>
     </div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src = "./js/app.js"></script>
 </body>
 </html>
