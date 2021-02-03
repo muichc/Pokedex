@@ -12,7 +12,7 @@ const pokedexStats = document.querySelector('#base-stats');
 
 /*--- Profile --- */
 const pokedexProfile = document.querySelector('#profile');
-const pokemonPic = document.createElement('img');
+const pokemonPic = document.querySelector('#profile-pic');
 const pokemonName = document.createElement('p');
 
 /*--- Body ---*/
@@ -112,7 +112,7 @@ function displayInfo(data) {
     // Changes initial pic to correct pokedex pic
     pokedex.style.backgroundImage = "url('../resources/images/pokedexFinal.png')"
     // Displays name and image in profile   
-    pokedexProfile.appendChild(pokemonPic); 
+    pokemonPic.style.display = "inline";
     pokedexProfile.appendChild(pokemonName);
 
     // Displays info about height/weight/gender   

@@ -17,24 +17,24 @@
     </nav>
     
     <div class = "pokedex">
-        <!-- <div class = "pokedex-images">
-            <img id = "initialPic" src = ./resources/images/pokedex.png> 
-        </div> -->
         <div class = "search">
             <form id = "search-form" onsubmit="return false">
                 <input id = "search-term" type = "text" placeholder = "Search by name or ID number!">
                 <button id = "search-button"> Search </button>
             </form>    
         </div>
+        <div class = "error">
+        </div>
         <div class = "results">
             <div id = "profile"></div>
+                <img id = "profile-pic" alt = "Pokemon image" src = "./resources/images/pokeball.png">
             <div id = "body"></div>
             <div id = "evolutions"></div>
             <div id = "types"></div>
             <div id = "type-effect"></div>
             <div id = "moves"></div>
             <div id = "base-stats"></div>
-                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                <div id="chartContainer" style="height: 370px; width: 100%; display:none" ></div>
         </div>
     </div>
 

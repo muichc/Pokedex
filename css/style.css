@@ -6,26 +6,51 @@ body {
     margin: 0;
     font-family: Helvetica;
     background-color: rgb(41,41,41);
-    display: grid;
-    grid-template-columns: 1fr 3fr 3fr 1fr;
+    /* display: grid; */
+    /* grid-template-columns: 1fr 3fr 3fr 1fr;
     grid-template-rows: 40px auto;
     grid-template-areas:
     "nav nav nav nav"
     ". pokedex pokedex .";
-    align-items: center;
+    align-items: center; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 nav{
     display: flex;
-    grid-area: nav; 
+    justify-content: flex-start;
     height: 40px;
     background-color: rgb(254,25,75);
+    flex: 0 0 100%;
 }
 
 .nav-items{
     margin: 5px;
 }
+
+
+.pokedex{
+    /* Image settings */
+    margin: 20px 0 0 0 ;
+    height: 90vh;
+    width: 60vw;
+    background-image: url('../resources/images/pokedex.png');
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    overflow: hidden;
+    align-self: center;
+
+    /* Grid Container Settings */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
 .search{
+    grid-column: 2 / 6;
+    grid-row: 4 / 5;
+    place-self: start center;
     margin: 5px;
 } 
 #search-term{
@@ -34,33 +59,41 @@ nav{
 /* #search-button{
 } */
 
-.pokedex{
-    margin: 20px 0 0 0 ;
-    height: 80vh;
-    width: 60vw;
-    grid-area:pokedex;
-    background-image: url('../resources/images/pokedex.png');
-    background-size: 90% 100%; 
-    background-repeat: no-repeat;
-    overflow: hidden;
-    /* display: grid;
-    grid-template-columns: ; */
-}
-
-/* .pokedex-images{
-    grid-area: pokedex-image;
-    position:relative;
-}
-.pokedex-images>img{
-    position:relative;
-    margin: 10px;
-    height: 100vh;
-    
-} */
-/* .results{
+.results{
+    grid-column: 7 / 13;
+    grid-row:1 / 9;
     display: grid;
-} */
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
 
-/* #profile {
-    grid-column-start: 10;
-} */
+#profile-pic{
+    display: none;
+    grid-column: 2 / 4;
+    grid-row: 1 / 2;
+    
+    place-self: center center;
+}
+#profile{
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+
+
+    /* Grid Container Settings */
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+#body{
+    grid-column: 2 / 4;
+    grid-row: 3 / 5;
+}
+#evolutions{
+    grid-column: 3 / 5 ;
+    grid-row: 3 / 5
+}
+
+#base-stats{
+
+}
+
