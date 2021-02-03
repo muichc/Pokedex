@@ -11,8 +11,8 @@ body {
     grid-template-rows: 40px auto;
     grid-template-areas:
     "nav nav nav nav"
-    ". pokedex-image pokedex-image ."
-
+    ". pokedex pokedex .";
+    align-items: center;
 }
 
 nav{
@@ -26,32 +26,41 @@ nav{
     margin: 5px;
 }
 .search{
-    grid-row-start: 2;
-    grid-column-start:2;
+    margin: 5px;
 } 
 #search-term{
     width: 200px;
 }
-#search-button{
+/* #search-button{
+} */
+
+.pokedex{
+    margin: 20px 0 0 0 ;
+    height: 80vh;
+    width: 60vw;
+    grid-area:pokedex;
+    background-image: url('../resources/images/pokedex.png');
+    background-size: 90% 100%; 
+    background-repeat: no-repeat;
+    overflow: hidden;
+    /* display: grid;
+    grid-template-columns: ; */
 }
 
-.pokedex-images{
+/* .pokedex-images{
     grid-area: pokedex-image;
-    
-    /* display: grid; */
+    position:relative;
 }
 .pokedex-images>img{
     position:relative;
     margin: 10px;
     height: 100vh;
     
-}
-.results{
+} */
+/* .results{
     display: grid;
-}
-.search{
-    
-}
-#profile {
+} */
+
+/* #profile {
     grid-column-start: 10;
-}
+} */

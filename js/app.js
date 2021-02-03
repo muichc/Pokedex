@@ -62,19 +62,18 @@ function fetchInfo(pokemon) {
         
 };
 
-function fetchInfoType(pokemon) {
-    fetch (`https://pokeapi.co/api/v2/type/${pokemon}/`)
+function fetchInfoType(type) {
+    fetch (`https://pokeapi.co/api/v2/type/${type}/`)
     .then (responseData => {
         return responseData.json();
     })
     .then (parsedData => {
-        getTypeEffect(parsedData);
         console.log(parsedData);
     })
     .catch(error => {
         const errorMessage = document.createElement('p')
-            errorMessage.textContent = "Unknown type, how did you even get here?";
-            pokedexProfile.appendChild(errorMessage);
+        errorMessage.textContent = "Unknown type, how did you even get here?";
+        pokedexProfile.appendChild(errorMessage);
         console.error(error);
     })
 }
@@ -111,14 +110,7 @@ function updateInfo(data) {
 
 function displayInfo(data) {
     // Changes initial pic to correct pokedex pic
-    const initialPic = document.querySelector('#initialPic');
-    const picContainer = document.querySelector('.pokedex-images')
-    picContainer.removeChild(initialPic);
-    const actualPokedex = document.createElement('img');
-    actualPokedex.setAttribute('src', '../resources/images/pokedexFinal.png');
-    actualPokedex.setAttribute('id', "actualImage");
-    // document.body.style.backgroundImage = actualPokedex;
-    picContainer.appendChild(actualPokedex);
+    pokedex.style.backgroundImage = "url('../resources/images/pokedexFinal.png')"
     // Displays name and image in profile   
     pokedexProfile.appendChild(pokemonPic); 
     pokedexProfile.appendChild(pokemonName);
@@ -128,7 +120,7 @@ function displayInfo(data) {
     pokedexBody.appendChild(pokemonWeight);
 
     // Displays info about evolutions
-
+    
     // Displays info about pokemon types
 
     // Displays info about type effectiveness
@@ -151,13 +143,14 @@ function getTypes(data) {
     return typeArray
 }
 
-function getTypeEffect(data){
-    const typeArray = getTypes(data);
-    for (let type in typeArray) {
-        fetchInfoType(typeArray[type]);
-    }
-    const pokemonWeak = document.createElement('button');
-}
+// function getTypeEffect(data){
+//     const typeArray = getTypes(data);
+//     const 
+//     for (let type in typeArray) {
+//         fetchInfoType(typeArray[type]);
+//     }
+//     const pokemonWeak = document.createElement('button');
+// }
     
 
 
@@ -172,9 +165,9 @@ chartContainer.setAttribute('style', "height: 370px; width: 100%;")
 function chart() {
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
-        title:{
-            text:"Fortune 500 Companies by Country"
-        },
+        // title:{
+        //     text:"Fortune 500 Companies by Country"
+        // },
         axisX:{
             interval: 1
         },
@@ -210,6 +203,6 @@ function chart() {
             ]
         }]
     });
-    // chart.render();
+    chart.render();
 }
 
