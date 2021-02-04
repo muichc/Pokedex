@@ -23,8 +23,13 @@ const pokemonBody = document.createElement('p');
 /*--- Evolutions ---*/
 const pokedexEvolutions = document.querySelector('#evolutions');
 
+/*--- Error Messages ---*/
+const errorContainer = document.querySelector('.error');
+const errorMessage = document.createElement('span');
+
 /*--- Types ---*/
 const pokedexTypes = document.querySelector('#types');
+const gen1Types = ["normal", "fight", "flying", "poison", "ground", "rock", "bug", "ghost", "fire", "water", "grass", "electric", "psychic", "ice", "dragon"]
 
 /*--- Type Effectiveness ---*/
 const pokedexTypeEffect = document.querySelector('#type-effect');
@@ -54,9 +59,8 @@ function fetchInfo(pokemon) {
             updateInfo(parsedData);
         })
         .catch(error => {
-            const errorMessage = document.createElement('p')
             errorMessage.textContent = "Unknown pokemon, did you spell it correctly?";
-            pokedexProfile.appendChild(errorMessage);
+            errorContainer.appendChild(errorMessage);
             console.error(error);
         })
         
@@ -71,9 +75,8 @@ function fetchInfoType(type) {
         console.log(parsedData);
     })
     .catch(error => {
-        const errorMessage = document.createElement('p')
         errorMessage.textContent = "Unknown type, how did you even get here?";
-        pokedexProfile.appendChild(errorMessage);
+        errorContainer.appendChild(errorMessage);
         console.error(error);
     })
 }
@@ -93,15 +96,16 @@ function updateInfo(data) {
         pokedexTypes.innerHTML = "";
     }
     for (let item in typeArray) {
-        const pokemonType = document.createElement('button');
-        pokemonType.setAttribute('type', 'button');
-        pokemonType.setAttribute('class', `${typeArray[item]}`);
-        console.log(pokemonType);
-        pokemonType.textContent = typeArray[item].toUpperCase();
-        pokedexTypes.appendChild(pokemonType);
+        if (gen1Types.includes(typeArray[item])) {
+            console.log(typeArray[item])
+            const pokemonType = document.createElement('button');
+            pokemonType.setAttribute('type', 'button');
+            pokemonType.setAttribute('class', `${typeArray[item]}`);
+            console.log(pokemonType);
+            pokemonType.textContent = typeArray[item].toUpperCase();
+            pokedexTypes.appendChild(pokemonType);
+        }
     }
-    // Updates type effectiveness
-    
     // Updates displayInfo
     if (infoDisplayed === false) {
         return displayInfo(data);
@@ -130,8 +134,11 @@ function displayInfo(data) {
 
     // Displays info about moveset
 
+    // Check is there was an error message and remove it 
     // Indicates that the page is now displayed with info
     infoDisplayed = true;
+
+    
 }
 
 

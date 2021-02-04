@@ -56,6 +56,17 @@ nav{
 #search-term{
     width: 200px;
 }
+.error{
+    grid-column:3/6;
+    grid-row: 3/4;
+    margin: 0;
+    background-color: white;
+    border-radius: 25px;
+    padding: 0 10px 0 10px;
+    text-align: center;
+    font-size: 12px;
+    place-self: center center;
+}
 /* #search-button{
 } */
 
@@ -141,4 +152,43 @@ nav{
 }
 .poison{
     background-color: rgb(150,56,150);
+}
+.fire{
+    background-color: rgb(238,117,42);
+}
+.normal{
+    background-color: rgb(158,158,109);
+}
+.fighting{
+    background-color: rgb(184,42,36);
+}
+.flying{
+    background-color: rgb(158,133,238);
+}
+.ground{
+    background-color: rgb(219,184,93);
+}
+.rock{
+    background-color: rgb(175,150,49);
+}
+.bug{
+    background-color: rgb(158,179,29);
+}
+.ghost{
+    background-color: rgb(101,78,141);
+}
+.water{
+    background-color: rgb(93,133,238);
+}
+.electric{
+    background-color: rgb(207,202,42);
+}
+.psychic{
+    background-color: rgb(247,78,125);
+}
+.ice{
+    background-color: rgb(141,210,210);
+}
+.dragon{
+    background-color: rgb(101,49,247);
 }
