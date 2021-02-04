@@ -14,11 +14,11 @@ const pokedexStats = document.querySelector('#base-stats');
 const pokedexProfile = document.querySelector('#profile');
 const pokemonPic = document.querySelector('#profile-pic');
 const pokemonName = document.createElement('p');
+// pokemonName.setAttribute('id', )
 
 /*--- Body ---*/
 const pokedexBody = document.querySelector('#body');
-const pokemonHeight = document.createElement('p');
-const pokemonWeight = document.createElement('p');
+const pokemonBody = document.createElement('p');
 
 /*--- Evolutions ---*/
 const pokedexEvolutions = document.querySelector('#evolutions');
@@ -83,11 +83,10 @@ function fetchInfoType(type) {
 function updateInfo(data) {
     console.log(data)
     // Updates profile info
-    pokemonPic.setAttribute('src', data.sprites.front_default);
+    pokemonPic.setAttribute('src', data.sprites.other["official-artwork"].front_default);
     pokemonName.textContent = capitalizeFirstLetter(data.name);
     // Updates height/weight info
-    pokemonHeight.textContent = `Height: ${data.height/10} m`;
-    pokemonWeight.textContent = `Weight: ${data.weight/10} kg`;
+    pokemonBody.innerHTML = `Height: ${data.height/10} m <br> Weight: ${data.weight/10} kg`;
     // Updates type info
     const typeArray = getTypes(data);
     if (pokedexTypes.hasChildNodes()) {
@@ -96,7 +95,9 @@ function updateInfo(data) {
     for (let item in typeArray) {
         const pokemonType = document.createElement('button');
         pokemonType.setAttribute('type', 'button');
-        pokemonType.textContent = typeArray[item];
+        pokemonType.setAttribute('class', `${typeArray[item]}`);
+        console.log(pokemonType);
+        pokemonType.textContent = typeArray[item].toUpperCase();
         pokedexTypes.appendChild(pokemonType);
     }
     // Updates type effectiveness
@@ -116,8 +117,7 @@ function displayInfo(data) {
     pokedexProfile.appendChild(pokemonName);
 
     // Displays info about height/weight/gender   
-    pokedexBody.appendChild(pokemonHeight);
-    pokedexBody.appendChild(pokemonWeight);
+    pokedexBody.appendChild(pokemonBody);
 
     // Displays info about evolutions
     
