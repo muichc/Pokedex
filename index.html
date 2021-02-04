@@ -12,7 +12,10 @@
 </head>
 <body>
     <nav>
-        <div class = 'nav-items'>Home</div>
+        <div class = 'nav-items'>
+            <a href = '#' onClick = "window.location.reload(); return false; ">Home</a>  
+        </div>
+        <img src = "./resources/images/pokemonlogo.png">
         <!-- <div class = 'nav-items'>Compare Pokemons</div> -->
     </nav>
     
@@ -30,12 +33,15 @@
                 <img id = "profile-pic" alt = "Pokemon image" src = "./resources/images/pokeball.png">
                 <div id = "types"></div>
             </div>   
-            <div id = "body"></div>
-            <div id = "evolutions"></div>       
+            <div id = "body">
+                <div id = "height-weight"> </div>
+                <div id = "evolutions"></div>  
+                <div id = "base-stats"> <span id = "base-stats-title" style= "color: red; text-align: center;"> -----Base Stats-----</span></div>
+                <div id="chartContainer" style="height: 370px; width: 100%; display:none" ></div>
+            </div>     
             <div id = "type-effect"></div>
             <div id = "moves"></div>
-            <div id = "base-stats"></div>
-                <div id="chartContainer" style="height: 370px; width: 100%; display:none" ></div>
+            
         </div>
     </div>
 

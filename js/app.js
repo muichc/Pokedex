@@ -8,7 +8,7 @@ const input = document.querySelector('#search-term');
 const pokedex = document.querySelector('.pokedex');
 
 const pokedexMoves = document.querySelector('#moves');
-const pokedexStats = document.querySelector('#base-stats');
+
 
 /*--- Profile --- */
 const pokedexProfile = document.querySelector('#profile');
@@ -18,7 +18,9 @@ const pokemonName = document.createElement('p');
 
 /*--- Body ---*/
 const pokedexBody = document.querySelector('#body');
-const pokemonBody = document.createElement('p');
+const pokedexHW = document.querySelector('#height-weight');
+const pokemonHeight = document.createElement('span');
+const pokemonWeight = document.createElement('span');
 
 /*--- Evolutions ---*/
 const pokedexEvolutions = document.querySelector('#evolutions');
@@ -30,6 +32,16 @@ const errorMessage = document.createElement('span');
 /*--- Types ---*/
 const pokedexTypes = document.querySelector('#types');
 const gen1Types = ["normal", "fight", "flying", "poison", "ground", "rock", "bug", "ghost", "fire", "water", "grass", "electric", "psychic", "ice", "dragon"]
+
+/*---Base Stats ---*/
+const pokedexStats = document.querySelector('#base-stats');
+const pokemonAttack = document.createElement('p');
+const pokemonDefense = document.createElement('p');
+const pokemonHp = document.createElement('p');
+const pokemonSpecialAtt = document.createElement('p');
+const pokemonSpecialDef = document.createElement('p');
+const pokemonSpeed = document.createElement('p');
+
 
 /*--- Type Effectiveness ---*/
 const pokedexTypeEffect = document.querySelector('#type-effect');
@@ -56,7 +68,11 @@ function fetchInfo(pokemon) {
             return responseData.json();
         })
         .then (parsedData => {
-            updateInfo(parsedData);
+            if(parsedData.id <=151) {
+                updateInfo(parsedData);
+            } else{
+                throw new Error ("Not Gen 1 Pokemon");
+            }
         })
         .catch(error => {
             errorMessage.textContent = "Unknown pokemon, did you spell it correctly?";
@@ -87,9 +103,11 @@ function updateInfo(data) {
     console.log(data)
     // Updates profile info
     pokemonPic.setAttribute('src', data.sprites.other["official-artwork"].front_default);
-    pokemonName.textContent = capitalizeFirstLetter(data.name);
+    pokemonName.textContent = `${capitalizeFirstLetter(data.name)} #${getPokemonId(data.id)}`;
     // Updates height/weight info
-    pokemonBody.innerHTML = `Height: ${data.height/10} m <br> Weight: ${data.weight/10} kg`;
+    // pokemonHeight.innerHTML = `<p> HEIGHT: ${data.height/10} m <span> WEIGHT: ${data.weight/10} kg </span> </p> `
+    pokemonHeight.textContent = `HEIGHT: ${data.height/10} m`
+    pokemonWeight.textContent = `WEIGHT: ${data.weight/10} kg`;
     // Updates type info
     const typeArray = getTypes(data);
     if (pokedexTypes.hasChildNodes()) {
@@ -106,6 +124,15 @@ function updateInfo(data) {
             pokedexTypes.appendChild(pokemonType);
         }
     }
+    // Updates info about base stats
+    for (let stat in data.stats) {
+        pokemonHp.textContent = `HP: ${data.stats[stat].base_stat}`;
+        pokemonAttack.textContent = `ATTACK: ${data.stats[stat].base_stat}`;
+        pokemonDefense.textContent = `DEFENSE: ${data.stats[stat].base_stat}`;
+        pokemonSpecialAtt.textContent = `SPECIAL ATTACK: ${data.stats[stat].base_stat}`;
+        pokemonSpecialDef.textContent = `SPECIAL DEFENSE: ${data.stats[stat].base_stat}`;
+        pokemonSpeed.textContent = `SPEED: ${data.stats[stat].base_stat}`;
+    }
     // Updates displayInfo
     if (infoDisplayed === false) {
         return displayInfo(data);
@@ -121,18 +148,26 @@ function displayInfo(data) {
     pokedexProfile.appendChild(pokemonName);
 
     // Displays info about height/weight/gender   
-    pokedexBody.appendChild(pokemonBody);
+    pokedexHW.appendChild(pokemonHeight);
+    pokedexHW.appendChild(pokemonWeight);
+    pokedexBody.style.display = "inline";
 
     // Displays info about evolutions
     
     // Displays info about pokemon types
 
     // Displays info about type effectiveness
-    pokedexTypeEffect.appendChild(pokedexWeak);
-    pokedexTypeEffect.appendChild(pokedexResist);
-    pokedexTypeEffect.appendChild(pokedexImmune);
+    // pokedexTypeEffect.appendChild(pokedexWeak);
+    // pokedexTypeEffect.appendChild(pokedexResist);
+    // pokedexTypeEffect.appendChild(pokedexImmune);
 
-    // Displays info about moveset
+    // Displays info about base stats
+    pokedexStats.appendChild(pokemonAttack);
+    pokedexStats.appendChild(pokemonDefense);
+    pokedexStats.appendChild(pokemonHp);
+    pokedexStats.appendChild(pokemonSpecialAtt);
+    pokedexStats.appendChild(pokemonSpecialDef);
+    pokedexStats.appendChild(pokemonSpeed);
 
     // Check is there was an error message and remove it 
     // Indicates that the page is now displayed with info
@@ -165,51 +200,61 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-// Bar chart code from canvas 
-const chartContainer = document.createElement('div');
-chartContainer.setAttribute('id', "chartContainer");
-chartContainer.setAttribute('style', "height: 370px; width: 100%;")
-function chart() {
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        // title:{
-        //     text:"Fortune 500 Companies by Country"
-        // },
-        axisX:{
-            interval: 1
-        },
-        axisY2:{
-            interlacedColor: "rgba(1,77,101,.2)",
-            gridColor: "rgba(1,77,101,.1)",
-            title: "Number of Companies"
-        },
-        data: [{
-            type: "bar",
-            name: "companies",
-            axisYType: "secondary",
-            color: "#014D65",
-            dataPoints: [
-                { y: 3, label: "Sweden" },
-                { y: 7, label: "Taiwan" },
-                { y: 5, label: "Russia" },
-                { y: 9, label: "Spain" },
-                { y: 7, label: "Brazil" },
-                { y: 7, label: "India" },
-                { y: 9, label: "Italy" },
-                { y: 8, label: "Australia" },
-                { y: 11, label: "Canada" },
-                { y: 15, label: "South Korea" },
-                { y: 12, label: "Netherlands" },
-                { y: 15, label: "Switzerland" },
-                { y: 25, label: "Britain" },
-                { y: 28, label: "Germany" },
-                { y: 29, label: "France" },
-                { y: 52, label: "Japan" },
-                { y: 103, label: "China" },
-                { y: 134, label: "US" }
-            ]
-        }]
-    });
-    chart.render();
+function getPokemonId(number) {
+    if (number < 10) {
+        return `00${number}`;
+    } else if (number >=10 && number <100) {
+        return `0${number}`;
+    } else {
+        return `${number}`;
+    }
 }
+
+// Bar chart code from canvas 
+// const chartContainer = document.createElement('div');
+// chartContainer.setAttribute('id', "chartContainer");
+// chartContainer.setAttribute('style', "height: 370px; width: 100%;")
+// function chart() {
+//     var chart = new CanvasJS.Chart("chartContainer", {
+//         animationEnabled: true,
+//         // title:{
+//         //     text:"Fortune 500 Companies by Country"
+//         // },
+//         axisX:{
+//             interval: 1
+//         },
+//         axisY2:{
+//             interlacedColor: "rgba(1,77,101,.2)",
+//             gridColor: "rgba(1,77,101,.1)",
+//             title: "Number of Companies"
+//         },
+//         data: [{
+//             type: "bar",
+//             name: "companies",
+//             axisYType: "secondary",
+//             color: "#014D65",
+//             dataPoints: [
+//                 { y: 3, label: "Sweden" },
+//                 { y: 7, label: "Taiwan" },
+//                 { y: 5, label: "Russia" },
+//                 { y: 9, label: "Spain" },
+//                 { y: 7, label: "Brazil" },
+//                 { y: 7, label: "India" },
+//                 { y: 9, label: "Italy" },
+//                 { y: 8, label: "Australia" },
+//                 { y: 11, label: "Canada" },
+//                 { y: 15, label: "South Korea" },
+//                 { y: 12, label: "Netherlands" },
+//                 { y: 15, label: "Switzerland" },
+//                 { y: 25, label: "Britain" },
+//                 { y: 28, label: "Germany" },
+//                 { y: 29, label: "France" },
+//                 { y: 52, label: "Japan" },
+//                 { y: 103, label: "China" },
+//                 { y: 134, label: "US" }
+//             ]
+//         }]
+//     });
+//     chart.render();
+// }
 
