@@ -55,7 +55,7 @@ pokedexImmune.textContent = "Immune (No DMG)";
 
 /** Event Listeners  */
 searchBtn.addEventListener('click', () => {
-    const pokemon = input.value;
+    const pokemon = input.value.toLowerCase();
     input.value = "";
     fetchInfo(pokemon);
 });
