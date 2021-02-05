@@ -6,13 +6,6 @@ body {
     margin: 0;
     font-family: Helvetica;
     background-color: rgb(41,41,41);
-    /* display: grid; */
-    /* grid-template-columns: 1fr 3fr 3fr 1fr;
-    grid-template-rows: 40px auto;
-    grid-template-areas:
-    "nav nav nav nav"
-    ". pokedex pokedex .";
-    align-items: center; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -33,12 +26,11 @@ nav{
     color: black;
     text-decoration:none;
     background-color: white;
-    /* border-radius: 8px; */
+
 }
 
 nav>img{
-    /* margin-right: 20px;
-    margin-left: auto; */
+
     position: absolute;
     margin-left: 47%;
     width: auto;
@@ -68,7 +60,12 @@ nav>img{
     margin: 5px;
 } 
 #search-term{
+    height: 30px;
     width: 200px;
+}
+
+#search-button{
+    height: 30px;
 }
 .error{
     grid-column:3/6;
@@ -81,8 +78,6 @@ nav>img{
     font-size: 12px;
     place-self: center center;
 }
-/* #search-button{
-} */
 
 .results{
     grid-column: 7 / 13;
@@ -100,8 +95,7 @@ nav>img{
     display:grid;
     grid-template-columns: 6fr 6fr 2fr 2fr;
     grid-template-rows: 6fr 6fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    /* justify-items: center;
-    align-items: center; */
+
 }
 
 #profile-pic{
@@ -140,10 +134,7 @@ nav>img{
     background-color: rgba(242,244,231, 0.95);
     border-radius: 15px;
 }
-#evolutions{
-    grid-column: 2 / 4 ;
-    grid-row: 4 / 5;
-}
+
 #height-weight {
     display: flex;
     justify-content: space-evenly;
@@ -161,26 +152,10 @@ nav>img{
     font-style: bold;
 }
 #base-stats{
-    /* color: white; */
-    /* background-color: green;
-    text-align: center; */
     font-style: bold;
     border-radius: 8px;
     padding: 20px;
 }
-
-#type-effect{
-    grid-column:4/6;
-    grid-row: 5/7;
-}
-#moves{
-    grid-column: 4/6;
-    grid-row: 7/8;
-}
-
-
-
-
 
 
 /* Button Colors Depending on Type */

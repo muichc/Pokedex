@@ -1,5 +1,5 @@
 # Pokedex
-
+This is a simple pokedex I designed where users can use to find information about a pokemon quickly. T
 
 ### Screenshots
 ![landing-page](./landing_page_ss.png)
@@ -10,9 +10,9 @@
 *CSS
 *Javascript
 
-![HTML]
-![CSS]
-![Javascript]
+![HTML](./html-ss.png)
+![CSS] (./css-ss.png)
+![Javascript] (./javascript-ss.png)
 
 ### User Stories & Wireframes
 The users can search for their desired pokemon in Generation 1 either by their name or their pokemon ID to find information such as their base stats or types. The search bar is always visible, so the user can then search for other pokemon if they wish to navigate to other pokemon. 
