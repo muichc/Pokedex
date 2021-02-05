@@ -1,5 +1,5 @@
 # Pokedex
-This is a simple pokedex I designed where users can use to find information about a pokemon quickly. T
+This is a simple pokedex I designed where users can use to find information about a pokemon quickly. 
 
 ### Screenshots
 ![landing-page](./landing_page_ss.png)
